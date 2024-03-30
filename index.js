@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cron = require("node-cron");
 
 const authRoutes = require("./routes/auth.js");
 
@@ -52,4 +53,14 @@ app.post("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+cron.schedule("*/10 * * * *", async ()=>{
+  const response=await axios.get(process.env.BURL).then(()=>{
+    console.log(response.data);
+
+  }).catch((e)=>{console.log("Error Node-Cron")});
+});
