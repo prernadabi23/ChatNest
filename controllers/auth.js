@@ -10,6 +10,9 @@ const api_secret = process.env.STREAM_API_SECRET;
 const api_id = process.env.STREAM_API_ID;
 
 const signup = async (req, res) => {
+
+  console.log("Someone is trying to SignUp!");
+
   try {
     const { fullName, username, password, phoneNumber } = req.body;
 
@@ -30,7 +33,12 @@ const signup = async (req, res) => {
   }
 };
 
+
+
 const login = async (req, res) => {
+
+  console.log("Someone is trying to Login!");
+
   try {
     const { username, password } = req.body;
     const serverClient = connect(api_key, api_secret, api_id);
